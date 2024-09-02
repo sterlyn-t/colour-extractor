@@ -50,7 +50,7 @@ export default function Home() {
           <input type="file" id="file" hidden onChange={uploadImage} />
         </div>
       </header>
-      <main className="flex flex-grow flex-col items-center justify-center px-24 py-12 bg-gradient-to-t from-gray-900 via-gray-800 to-gray-700">
+      <main className="flex flex-grow flex-col items-center justify-center px-24 py-12 bg-gradient-to-t from-gray-900 via-gray-800 to-gray-700 overflow-x-hidden">
         <DisplayImage
           uploadedImage={uploadedImage}
           uploadImage={uploadImage}
