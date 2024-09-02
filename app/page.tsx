@@ -32,8 +32,8 @@ export default function Home() {
     reader.readAsDataURL(file);
   };
   return (
-    <div className="h-screen flex flex-col">
-      <header className="px-8 py-4 w-full min-h-[10vh] bg-gray-700 justify-between flex sticky top-0 border-b-2 border-zinc-900 items-center z-10">
+    <div className="flex flex-col">
+      <header className="px-8 py-4 w-full min-h-[10vh] bg-gray-700 justify-between flex sticky top-0 border-b-2 border-zinc-900 items-center z-20">
         <h1
           className={"text-4xl font-medium text-purple-100 " + abril.className}
         >
