@@ -4,6 +4,7 @@ import { ImageUp } from "lucide-react";
 import { Abril_Fatface } from "next/font/google";
 import ColorThief from "colorthief";
 import { useState } from "react";
+import Link from "next/link";
 
 const abril = Abril_Fatface({ subsets: ["latin"], weight: "400" });
 
@@ -34,11 +35,15 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <header className="px-12 sm:px-8 py-4 w-full min-h-[10vh] bg-gray-700 justify-between flex sticky top-0 border-b-2 border-zinc-900 items-center z-20">
-        <h1
-          className={"text-4xl font-medium text-purple-100 " + abril.className}
-        >
-          Extractor
-        </h1>
+        <Link href="/">
+          <h1
+            className={
+              "text-4xl font-medium text-purple-100 " + abril.className
+            }
+          >
+            Extractor
+          </h1>
+        </Link>
         <div className="justify-center align-center py-2 px-4 rounded-full hover:cursor-pointer border border-purple-800 bg-purple-300 hover:bg-purple-400 hover:border-purple-900 gap-1">
           <label
             className="font-semibold font-mono hover:cursor-pointer flex gap-1 text-zinc-800 hover:text-zinc-900"
