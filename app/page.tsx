@@ -39,7 +39,7 @@ export default function Home() {
         >
           Extractor
         </h1>
-        <div className="flex justify-center align-center py-2 px-4 rounded-full hover:cursor-pointer border border-purple-800 bg-purple-300 hover:bg-purple-400 hover:border-purple-900 gap-1">
+        <div className="hidden sm:block justify-center align-center py-2 px-4 rounded-full hover:cursor-pointer border border-purple-800 bg-purple-300 hover:bg-purple-400 hover:border-purple-900 gap-1">
           <label
             className="font-semibold font-mono hover:cursor-pointer flex gap-1 text-zinc-800 hover:text-zinc-900"
             htmlFor="file"
