@@ -9,7 +9,7 @@ const abril = Abril_Fatface({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
   const [uploadedImage, setUploadedImage] = useState<any>(null);
-  const [colorPalette, setColorPalette] = useState(null);
+  const [colorPalette, setColorPalette] = useState<any>(null);
 
   const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
