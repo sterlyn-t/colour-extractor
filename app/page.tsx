@@ -52,7 +52,13 @@ export default function Home() {
             <ImageUp />
             <span className="hidden sm:block">Upload Image</span>
           </label>
-          <input type="file" id="file" hidden onChange={uploadImage} />
+          <input
+            type="file"
+            accept="image/*"
+            id="file"
+            hidden
+            onChange={uploadImage}
+          />
         </div>
       </header>
       <main className="flex flex-grow flex-col items-center justify-center px-24 py-12 bg-gradient-to-t from-gray-900 via-gray-800 to-gray-700 overflow-x-hidden">
