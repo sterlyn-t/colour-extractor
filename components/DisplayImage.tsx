@@ -15,7 +15,6 @@ const DisplayImage = ({
 }: DisplayImageProps) => {
   return (
     <div className="flex flex-col justify-center items-center">
-      {/* Image container with fixed size */}
       <div className="relative h-[25rem] w-[48rem] border-2 border-gray-900 rounded-xl overflow-hidden flex items-center justify-center transition-all duration-200 ease-in-out">
         {uploadedImage ? (
           <img
@@ -34,8 +33,6 @@ const DisplayImage = ({
           </label>
         )}
       </div>
-
-      {/* Color palette section */}
       {colorPalette && (
         <div className="mt-4">
           <ColourPalette palette={colorPalette} />
