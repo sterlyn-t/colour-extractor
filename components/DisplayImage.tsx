@@ -1,42 +1,69 @@
+"use client";
 import React from "react";
 import { ColourPalette } from "./ColourPalette";
-import { ImageUp } from "lucide-react";
+import ReactDropzone, { FileRejection } from "react-dropzone";
+import { IconPhoto, IconX } from "@tabler/icons-react";
 
 interface DisplayImageProps {
   uploadedImage: any;
+  setUploadedImage: () => void;
   colorPalette: any;
-  uploadImage: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  url: string;
+  uploadImage: (acceptedFiles: File[], rejectedFiles: FileRejection[]) => void;
 }
 
 const DisplayImage = ({
   uploadedImage,
+  setUploadedImage,
   colorPalette,
+  url,
   uploadImage,
 }: DisplayImageProps) => {
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="relative h-[25rem] w-[48rem] border-2 border-gray-900 rounded-xl overflow-hidden flex items-center justify-center transition-all duration-200 ease-in-out">
-        {uploadedImage ? (
-          <img
-            src={uploadedImage}
-            alt="uploaded"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : (
-          <label
-            className="font-semibold font-mono hover:cursor-pointer flex gap-1 text-gray-400"
-            htmlFor="file"
-          >
-            <ImageUp />
-            Upload Image
-            <input type="file" id="file" hidden onChange={uploadImage} />
-          </label>
-        )}
-      </div>
-      {colorPalette && (
-        <div className="mt-4">
-          <ColourPalette palette={colorPalette} />
+    <div>
+      {uploadedImage ? (
+        <div className="flex flex-col justify-center items-center z-20 mt-4 h-full">
+          <div className="relative">
+            <img
+              src={uploadedImage}
+              alt="uploaded"
+              className="w-full h-80 object-cover rounded-xl"
+              width={440}
+              height={320}
+            />
+
+            <IconX
+              className="absolute text-primary size-8 p-2 hover:bg-muted-foreground z-50 top-2 right-2 bg-muted-foreground/90 rounded-full"
+              onClick={setUploadedImage}
+            />
+          </div>
+
+          {colorPalette && (
+            <div className="w-full">
+              <ColourPalette palette={colorPalette} />
+            </div>
+          )}
         </div>
+      ) : (
+        <ReactDropzone
+          onDrop={(acceptedFiles, fileRejections) =>
+            uploadImage(acceptedFiles, fileRejections)
+          }
+        >
+          {({ getRootProps, getInputProps }) => (
+            <section className="h-80 border-dashed border w-full rounded-xl flex items-center justify-center bg-card">
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <div className="flex flex-col items-center gap-2 text-muted-foreground hover:text-zinc-800 dark:hover:text-slate-200">
+                  <IconPhoto className="size-12" />
+                  <p className="text-lg sm:text-md text-center tracking-tight">
+                    Drop an image here, or click to select
+                  </p>
+                </div>
+              </div>
+            </section>
+          )}
+        </ReactDropzone>
       )}
     </div>
   );
