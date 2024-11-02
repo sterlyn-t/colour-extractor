@@ -1,4 +1,4 @@
-export function normalizeUrl(inputUrl: string): string | null {
+export function normalizeUrl(inputUrl: string): string {
   try {
     // If the URL doesn't have a scheme, add "https://"
     if (!/^https?:\/\//i.test(inputUrl)) {
@@ -16,6 +16,6 @@ export function normalizeUrl(inputUrl: string): string | null {
   } catch (error) {
     // Return null if the input is not a valid URL
     console.error("Invalid URL format:", error);
-    return null;
+    return "";
   }
 }

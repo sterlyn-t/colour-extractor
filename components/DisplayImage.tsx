@@ -40,7 +40,11 @@ const DisplayImage = ({
 
           {colorPalette && (
             <div className="w-full">
-              <ColourPalette palette={colorPalette} />
+              <ColourPalette
+                palette={colorPalette}
+                image={uploadedImage}
+                onClear={setUploadedImage}
+              />
             </div>
           )}
         </div>

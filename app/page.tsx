@@ -160,7 +160,16 @@ export default function Home() {
         </div>
 
         <div className="flex flex-wrap mt-2">
-          {colors && <ColourPalette palette={colors} />}
+          {colors && (
+            <ColourPalette
+              palette={colors}
+              url={url}
+              onClear={() => {
+                setUrl("");
+                setColors(null);
+              }}
+            />
+          )}
         </div>
       </main>
     </div>
