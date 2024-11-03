@@ -18,6 +18,7 @@ const placeholders = ["Enter any website URL"];
 
 export default function Home() {
   const [uploadedImage, setUploadedImage] = useState<any>(null);
+  const [imageName, setImageName] = useState<string>("");
   const [colorPalette, setColorPalette] = useState<any>(null);
   const [url, setUrl] = useState<string>("");
   const [colors, setColors] = useState<number[][] | null>(null);
@@ -85,6 +86,8 @@ export default function Home() {
     const file = acceptedFiles[0];
     const reader = new FileReader();
 
+    setImageName(file.name);
+
     reader.onload = async (event) => {
       if (!event.target) return;
       const img = new Image();
@@ -119,7 +122,7 @@ export default function Home() {
         </Link>
         <ModeToggle />
       </header>
-      <main className="flex flex-grow flex-col items-center justify-center px-24 pb-12  overflow-x-hidden">
+      <main className="flex flex-grow flex-col items-center justify-center px-8 sm:px-24 pb-12  overflow-x-hidden w-full">
         <div className="h-full w-full dark:bg-background bg-white  dark:bg-grid-white/[0.1] bg-grid-black/[0.1] relative flex items-center justify-center">
           {/* Radial gradient for the container to give a faded look */}
           <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-background bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -150,6 +153,7 @@ export default function Home() {
                 <DisplayImage
                   uploadedImage={uploadedImage}
                   url={url}
+                  imageName={imageName}
                   uploadImage={uploadImage}
                   setUploadedImage={() => setUploadedImage(null)}
                   colorPalette={colorPalette}

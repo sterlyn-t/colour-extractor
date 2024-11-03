@@ -2,8 +2,8 @@
 import React from "react";
 import { Carousel, Card } from "@/components/Carousel";
 import {
-  IconDatabase,
-  IconImageInPicture,
+  IconDeviceFloppy,
+  IconPhotoUp,
   IconWorldWww,
   IconX,
 } from "@tabler/icons-react";
@@ -14,6 +14,7 @@ interface ColourPaletteProps {
   palette: any;
   url?: string | null;
   image?: string | null;
+  imageName?: string;
   onClear: () => void;
 }
 
@@ -21,6 +22,7 @@ export function ColourPalette({
   palette,
   url,
   image,
+  imageName,
   onClear,
 }: ColourPaletteProps) {
   const toHex = (rgb: string) => {
@@ -56,8 +58,8 @@ export function ColourPalette({
           <p className="text-muted-foreground">Extracted from : </p>
           {image && (
             <>
-              <IconImageInPicture />
-              <p>{image.slice(0, 30)}</p>
+              <IconPhotoUp />
+              <p>{imageName}</p>
             </>
           )}
           {url && (
@@ -83,7 +85,7 @@ export function ColourPalette({
           </Button>
           <Button>
             Save
-            <IconDatabase />
+            <IconDeviceFloppy />
           </Button>
         </div>
       </div>

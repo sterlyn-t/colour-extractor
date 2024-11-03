@@ -6,6 +6,7 @@ import { IconPhoto, IconX } from "@tabler/icons-react";
 
 interface DisplayImageProps {
   uploadedImage: any;
+  imageName: string;
   setUploadedImage: () => void;
   colorPalette: any;
   url: string;
@@ -14,6 +15,7 @@ interface DisplayImageProps {
 
 const DisplayImage = ({
   uploadedImage,
+  imageName,
   setUploadedImage,
   colorPalette,
   url,
@@ -43,6 +45,7 @@ const DisplayImage = ({
               <ColourPalette
                 palette={colorPalette}
                 image={uploadedImage}
+                imageName={imageName}
                 onClear={setUploadedImage}
               />
             </div>
