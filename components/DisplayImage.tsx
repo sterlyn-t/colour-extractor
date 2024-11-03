@@ -39,7 +39,7 @@ const DisplayImage = ({
           </div>
 
           {colorPalette && (
-            <div className="w-full">
+            <div className="w-full bg-card">
               <ColourPalette
                 palette={colorPalette}
                 image={uploadedImage}
@@ -49,25 +49,29 @@ const DisplayImage = ({
           )}
         </div>
       ) : (
-        <ReactDropzone
-          onDrop={(acceptedFiles, fileRejections) =>
-            uploadImage(acceptedFiles, fileRejections)
-          }
-        >
-          {({ getRootProps, getInputProps }) => (
-            <section className="h-80 border-dashed border w-full rounded-xl flex items-center justify-center bg-card">
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <div className="flex flex-col items-center gap-2 text-muted-foreground hover:text-zinc-800 dark:hover:text-slate-200">
-                  <IconPhoto className="size-12" />
-                  <p className="text-lg sm:text-md text-center tracking-tight">
-                    Drop an image here, or click to select
-                  </p>
-                </div>
-              </div>
-            </section>
-          )}
-        </ReactDropzone>
+        <div className="items-center flex justify-center w-full">
+          <div className="max-w-xl flex flex-1">
+            <ReactDropzone
+              onDrop={(acceptedFiles, fileRejections) =>
+                uploadImage(acceptedFiles, fileRejections)
+              }
+            >
+              {({ getRootProps, getInputProps }) => (
+                <section className="h-80 border-dashed border w-full rounded-xl flex items-center justify-center bg-card">
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <div className="flex flex-col items-center gap-2 text-muted-foreground hover:text-zinc-800 dark:hover:text-slate-200">
+                      <IconPhoto className="size-12" />
+                      <p className="text-lg sm:text-md text-center tracking-tight">
+                        Drop an image here, or click to select
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              )}
+            </ReactDropzone>
+          </div>
+        </div>
       )}
     </div>
   );

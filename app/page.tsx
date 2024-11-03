@@ -146,7 +146,7 @@ export default function Home() {
             )}
 
             {!colors && (
-              <div className="mt-8 z-40 w-full p-2 sm:p-0 sm:max-w-2xl overflow-y-hidden">
+              <div className="mt-8 z-40 w-full p-2 sm:p-0  overflow-y-hidden">
                 <DisplayImage
                   uploadedImage={uploadedImage}
                   url={url}

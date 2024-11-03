@@ -1,7 +1,12 @@
 "use client";
 import React from "react";
 import { Carousel, Card } from "@/components/Carousel";
-import { IconDatabase, IconWorldWww, IconX } from "@tabler/icons-react";
+import {
+  IconDatabase,
+  IconImageInPicture,
+  IconWorldWww,
+  IconX,
+} from "@tabler/icons-react";
 import { Button } from "./ui/button";
 import { normalizeUrl } from "@/lib/normalizeUrl";
 
@@ -49,6 +54,12 @@ export function ColourPalette({
       <div className="flex w-full justify-between gap-2 border-b pb-4 items-center">
         <div className="text-muted-foreground flex gap-x-1 dark:bg-zinc-700 px-4 rounded-md">
           <p className="text-muted-foreground">Extracted from : </p>
+          {image && (
+            <>
+              <IconImageInPicture />
+              <p>{image.slice(0, 30)}</p>
+            </>
+          )}
           {url && (
             <>
               <IconWorldWww />
