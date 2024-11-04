@@ -207,7 +207,7 @@ export const Card = ({
   return (
     <motion.button
       onClick={() => handleCopyHex(hex)}
-      className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-60 w-56 md:h-[30rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative sm:hover:scale-105 ease-in-out duration-200"
+      className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-60 w-56 md:h-[30rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative sm:hover:scale-105 ease-in-out duration-200 shadow-md"
     >
       <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
       <div className="relative z-10 p-8">
