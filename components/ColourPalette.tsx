@@ -52,9 +52,9 @@ export function ColourPalette({
   ));
 
   return (
-    <div className="max-w-6xl py-4 border px-4 rounded-xl shadow-lg mt-16">
-      <div className="flex w-full justify-between gap-2 border-b pb-4 items-center">
-        <div className="text-muted-foreground flex gap-x-1 dark:bg-zinc-700 px-4 rounded-md">
+    <div className="w-full sm:max-w-6xl py-4 border sm:px-4 rounded-xl shadow-lg mt-16">
+      <div className="flex w-full justify-between gap-2 border-b pb-4 items-center flex-col sm:flex-row">
+        <div className="text-muted-foreground flex gap-x-1 dark:bg-zinc-700 sm:px-4 rounded-md">
           <p className="text-muted-foreground">Extracted from : </p>
           {image && (
             <>
@@ -78,7 +78,7 @@ export function ColourPalette({
             </>
           )}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-4 sm:mt-0">
           <Button variant="secondary" onClick={onClear}>
             Clear
             <IconX />
