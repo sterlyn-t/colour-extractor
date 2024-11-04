@@ -1,20 +1,13 @@
 "use client";
 import DisplayImage from "@/components/DisplayImage";
-import { Abril_Fatface } from "next/font/google";
 import ColorThief from "colorthief";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { PlaceholdersAndVanishInput } from "@/components/PlaceholdersAndVanishInput";
 import SparklesText from "@/components/ui/sparkles-text";
-import { ModeToggle } from "@/components/ThemeToggle";
 import { Highlight } from "@/components/HeroHighlight";
 import { FileRejection } from "react-dropzone";
 import { ColourPalette } from "@/components/ColourPalette";
 import { normalizeUrl } from "@/lib/normalizeUrl";
-
-const abril = Abril_Fatface({ subsets: ["latin"], weight: "400" });
-
-const placeholders = ["Enter any website URL"];
 
 export default function Home() {
   const [uploadedImage, setUploadedImage] = useState<any>(null);
@@ -114,14 +107,6 @@ export default function Home() {
   };
   return (
     <div className="flex flex-col">
-      <header className="px-12 sm:px-8 py-4 w-full dark:border-b h-22 justify-between bg-transparent shadow-md flex sticky top-0 backdrop-blur-md items-center z-50">
-        <Link href="/">
-          <h1 className={"text-4xl font-medium " + abril.className}>
-            Extractor
-          </h1>
-        </Link>
-        <ModeToggle />
-      </header>
       <main className="flex flex-grow flex-col items-center justify-center px-8 sm:px-24 pb-12  overflow-x-hidden w-full">
         <div className="h-full w-full dark:bg-background bg-white  dark:bg-grid-white/[0.1] bg-grid-black/[0.1] relative flex items-center justify-center">
           {/* Radial gradient for the container to give a faded look */}

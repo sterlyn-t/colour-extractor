@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import SparklesText from "@/components/ui/sparkles-text";
 import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 const abril = Abril_Fatface({ subsets: ["latin"], weight: "400" });
@@ -32,6 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster />
+          <Header />
           {children}
           <footer className="w-full text-center mt-8 py-8">
             <div className="flex items-center justify-between sm:px-16 px-2 sm:flex-row flex-col gap-y-8 sm:gap-y-0">
@@ -42,6 +44,12 @@ export default function RootLayout({
               />
 
               <div className="flex gap-x-2 items-center text-muted-foreground">
+                <Link
+                  href="/privacy-policy"
+                  className="text-sm text-muted-foreground dark:hover:text-slate-200 hover:text-zinc-900"
+                >
+                  Privacy Policy
+                </Link>
                 <Link
                   href="https://github.com/sterlyn-t"
                   target="_blank"
@@ -56,12 +64,6 @@ export default function RootLayout({
                   rel="noopener noreferrer"
                 >
                   <IconBrandLinkedin className="dark:hover:text-slate-200 hover:text-zinc-800" />
-                </Link>
-                <Link
-                  href="/privacy-policy"
-                  className="text-sm text-muted-foreground dark:hover:text-slate-200 hover:text-zinc-800"
-                >
-                  Privacy Policy
                 </Link>
               </div>
             </div>
