@@ -8,7 +8,7 @@ const abril = Abril_Fatface({ subsets: ["latin"], weight: "400" });
 
 const Footer = () => {
   return (
-    <footer className="w-full text-center mt-8 sm:py-8 pt-16 pb-8 ">
+    <footer className="w-full text-center mt-8 sm:py-8 pt-16 pb-8 border-t">
       <div className="flex items-center justify-between sm:px-16 px-2 sm:flex-row flex-col gap-y-8 sm:gap-y-0">
         <SparklesText text="Extractor" className="text-3xl" sparklesCount={3} />
 
