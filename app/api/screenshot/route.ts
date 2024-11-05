@@ -1,6 +1,8 @@
+import puppeteer from "puppeteer";
 import { NextRequest, NextResponse } from "next/server";
 import Vibrant from "node-vibrant";
-import chromium from "chrome-aws-lambda";
+import chromium from "@sparticuz/chromium";
+import puppeteerCore from "puppeteer-core";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
@@ -11,19 +13,27 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const browser = await chromium.puppeteer.launch({
-      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
-      headless: true,
-      ignoreHTTPSErrors: true,
-    });
-    // const browser = await puppeteer.launch({ headless: true });
+    let browser;
+    if (process.env.NODE_ENV === "production") {
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    } else {
+      browser = await puppeteer.launch({ headless: true });
+    }
+
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle2" });
+    await page.setViewport({ width: 1920, height: 1080 });
+    await page.goto(url), { waitUntil: "networkidle0" };
 
     // Take a screenshot and store it as a Buffer
-    const screenshotBuffer = await page.screenshot({ type: "png" });
+    const screenshotBuffer = await page.screenshot({
+      type: "png",
+      omitBackground: false,
+    });
     await browser.close();
 
     if (!screenshotBuffer) {
@@ -34,10 +44,10 @@ export async function GET(req: NextRequest) {
     }
 
     // Convert the Uint8Array to Buffer if needed
-    // const buffer = Buffer.from(screenshotBuffer);
+    const buffer = Buffer.from(screenshotBuffer);
 
     // Use Vibrant to extract colors directly from the screenshot buffer
-    const palette = await Vibrant.from(screenshotBuffer).getPalette();
+    const palette = await Vibrant.from(buffer).getPalette();
 
     // Map palette to RGB color values
     const colors = Object.values(palette).map(
