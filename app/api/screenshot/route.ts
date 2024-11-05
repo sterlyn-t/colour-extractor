@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import puppeteer from "puppeteer";
 import Vibrant from "node-vibrant";
 import chromium from "chrome-aws-lambda";
 
