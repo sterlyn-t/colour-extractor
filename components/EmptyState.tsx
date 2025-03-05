@@ -15,7 +15,7 @@ export function EmptyState() {
         get started with your collection.
       </p>
       <Button asChild className="gap-2">
-        <Link href="/create">
+        <Link href="/">
           <PlusCircle className="h-4 w-4" />
           Create Your First Palette
         </Link>

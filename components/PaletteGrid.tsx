@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, ExternalLink, MoreHorizontal, Trash } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,40 +20,22 @@ import {
 import toast from "react-hot-toast";
 import { EmptyState } from "./EmptyState";
 
-// Mock data for saved palettes
-const initialPalettes = [
-  {
-    id: "1",
-    name: "Sunset Vibes",
-    description: "Warm colors inspired by sunset",
-    colors: ["#FF7B89", "#FFB26B", "#FFD5C2", "#F6EAC2", "#ECD5E3"],
-    createdAt: "2023-10-15",
-  },
-  {
-    id: "2",
-    name: "Ocean Breeze",
-    description: "Cool tones from the sea",
-    colors: ["#05445E", "#189AB4", "#75E6DA", "#D4F1F9", "#FFFFFF"],
-    createdAt: "2023-10-10",
-  },
-  {
-    id: "3",
-    name: "Forest Retreat",
-    description: "Natural greens and browns",
-    colors: ["#2C5F2D", "#97BC62", "#D0E562", "#FFE77A", "#AA8976"],
-    createdAt: "2023-10-05",
-  },
-  {
-    id: "4",
-    name: "Berry Smoothie",
-    description: "Sweet berry colors",
-    colors: ["#6E2594", "#A12568", "#CD3B4A", "#E86B32", "#F6C90E"],
-    createdAt: "2023-09-28",
-  },
-];
+interface Palette {
+  id: string;
+  source: string;
+  createdAt: string;
+  colors: string[];
+}
 
 export default function PaletteGrid() {
-  const [palettes, setPalettes] = useState(initialPalettes);
+  const [palettes, setPalettes] = useState<Palette[]>([]);
+
+  useEffect(() => {
+    const savedPalettes = JSON.parse(
+      localStorage.getItem("savedPalettes") || "[]"
+    );
+    setPalettes(savedPalettes);
+  }, []);
 
   const handleCopyPalette = (colors: string[]) => {
     navigator.clipboard.writeText(colors.join(", "));
@@ -62,7 +43,9 @@ export default function PaletteGrid() {
   };
 
   const handleDeletePalette = (id: string) => {
-    setPalettes(palettes.filter((palette) => palette.id !== id));
+    const updatedPalettes = palettes.filter((palette) => palette.id !== id);
+    setPalettes(updatedPalettes);
+    localStorage.setItem("savedPalettes", JSON.stringify(updatedPalettes));
     toast.success("Palette deleted");
   };
 
@@ -77,8 +60,7 @@ export default function PaletteGrid() {
           <CardHeader className="pb-2">
             <div className="flex justify-between items-start">
               <div>
-                <CardTitle>{palette.name}</CardTitle>
-                <CardDescription>{palette.description}</CardDescription>
+                <CardTitle>{palette.source}</CardTitle>
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

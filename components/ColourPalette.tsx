@@ -56,6 +56,7 @@ export function ColourPalette({
     const newPalette = {
       id: paletteId,
       colors: hexPalette,
+      createdAt: new Intl.DateTimeFormat("en-CA").format(new Date()),
       source: imageName || url || "Unknown",
     };
 
