@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Carousel, Card } from "@/components/Carousel";
 import {
   IconDeviceFloppy,
@@ -9,6 +10,7 @@ import {
 } from "@tabler/icons-react";
 import { Button } from "./ui/button";
 import { normalizeUrl } from "@/lib/normalizeUrl";
+import toast from "react-hot-toast";
 
 interface ColourPaletteProps {
   palette: any;
@@ -41,6 +43,28 @@ export function ColourPalette({
     rgb = `rgb(${color.join(",")})`;
     hex = `#${toHex(color[0])}${toHex(color[1])}${toHex(color[2])}`;
   });
+
+  const savePalette = () => {
+    const paletteId = uuidv4();
+    const hexPalette = palette.map(
+      (color: any) => `#${toHex(color[0])}${toHex(color[1])}${toHex(color[2])}`
+    );
+    const savedPalettes = JSON.parse(
+      localStorage.getItem("savedPalettes") || "[]"
+    );
+
+    const newPalette = {
+      id: paletteId,
+      colors: hexPalette,
+      source: imageName || url || "Unknown",
+    };
+
+    localStorage.setItem(
+      "savedPalettes",
+      JSON.stringify([...savedPalettes, newPalette])
+    );
+    toast.success("Palette saved!");
+  };
 
   const cards = palette.map((color: any, index: number) => (
     <Card
@@ -83,7 +107,7 @@ export function ColourPalette({
             Clear
             <IconX />
           </Button>
-          <Button>
+          <Button onClick={savePalette}>
             Save
             <IconDeviceFloppy />
           </Button>

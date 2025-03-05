@@ -3,6 +3,7 @@ import React from "react";
 import { ModeToggle } from "./ThemeToggle";
 
 import { Abril_Fatface } from "next/font/google";
+import { SavedPalettesButton } from "./SavedPalettesButton";
 
 const abril = Abril_Fatface({ subsets: ["latin"], weight: "400" });
 
@@ -12,7 +13,10 @@ const Header = () => {
       <Link href="/">
         <h1 className={"text-4xl font-medium " + abril.className}>Extractor</h1>
       </Link>
-      <ModeToggle />
+      <div className="flex items-center gap-2">
+        <SavedPalettesButton />
+        <ModeToggle />
+      </div>
     </header>
   );
 };

@@ -32,7 +32,8 @@
     "react-dropzone": "^14.2.10",
     "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
